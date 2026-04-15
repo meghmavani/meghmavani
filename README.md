@@ -62,28 +62,6 @@ systems thinking > isolated model scores
   <img src="./assets/spotlight-card.svg" alt="spotlight card" />
 </p>
 
-<details open>
-<summary><strong>activity pulse</strong></summary>
-
-<!-- LATEST-CONTRIB:START -->
-- latest repo: [meghmavani/Folder-Cleaner](https://github.com/meghmavani/Folder-Cleaner) (updated 2h ago)
-- latest contribution: pushed code to meghmavani/meghmavani (just now)
-- current focus hint: Do you find it tedious to delete specific files from a large directory? Are you tired of manually sifting t...
-<!-- LATEST-CONTRIB:END -->
-
-</details>
-
-<details open>
-<summary><strong>repo spotlight (locked)</strong></summary>
-
-<!-- PROJECT-SPOTLIGHT:START -->
-- repo spotlight: [meghmavani/C4PS](https://github.com/meghmavani/C4PS)
-- why this one: C4PS is a A production grade, modular pipeline for image enhancement, caption generation, and offline multi...
-- signal: python project, 0 stars
-<!-- PROJECT-SPOTLIGHT:END -->
-
-</details>
-
 ## what i build
 
 - agentic ai systems with action loops, not just text outputs
