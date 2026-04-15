@@ -4,6 +4,8 @@ const path = require('path');
 
 const README_PATH = './README.md';
 const NOW_BUILDING_SVG_PATH = './assets/now-building.svg';
+const SYSTEM_PULSE_SVG_PATH = './assets/system-pulse.svg';
+const SPOTLIGHT_CARD_SVG_PATH = './assets/spotlight-card.svg';
 
 const usernameFromRepo = process.env.GITHUB_REPOSITORY
   ? process.env.GITHUB_REPOSITORY.split('/')[0]
@@ -215,6 +217,18 @@ const buildTechStackBlock = (repos) => {
   return `<p>\n${badges}\n</p>`;
 };
 
+const getTopLanguages = (repos, limit = 5) => {
+  const counts = new Map();
+  repos.forEach((repo) => {
+    const key = repo.language || 'systems';
+    counts.set(key, (counts.get(key) || 0) + 1);
+  });
+
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit);
+};
+
 const writeNowBuildingBanner = (latestContributionLine, currentFocusLine) => {
   const contributionText = truncate(
     stripMarkdown(latestContributionLine).replace(/^latest contribution:\s*/i, ''),
@@ -274,6 +288,95 @@ const writeNowBuildingBanner = (latestContributionLine, currentFocusLine) => {
   fs.writeFileSync(NOW_BUILDING_SVG_PATH, svg);
 };
 
+const writeSystemPulseBanner = (latestRepo, latestContributionLine, topLanguages) => {
+  const repoName = latestRepo ? latestRepo.full_name : `${GITHUB_USERNAME}/unknown`;
+  const repoLang = latestRepo && latestRepo.language ? latestRepo.language : 'systems';
+  const repoStars = latestRepo && typeof latestRepo.stargazers_count === 'number'
+    ? latestRepo.stargazers_count
+    : 0;
+  const contributionText = truncate(
+    stripMarkdown(latestContributionLine).replace(/^latest contribution:\s*/i, ''),
+    70,
+  );
+
+  const bars = topLanguages.length ? topLanguages : [['systems', 1]];
+  const maxCount = Math.max(...bars.map((entry) => entry[1]), 1);
+
+  const barSvg = bars.map(([language, count], index) => {
+    const y = 62 + index * 18;
+    const width = Math.max(90, Math.round((count / maxCount) * 330));
+    const delay = (index * 0.2).toFixed(1);
+    return `
+  <text x="600" y="${y + 10}" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="11">${escapeXml(String(language))}</text>
+  <rect x="700" y="${y}" width="${width}" height="10" rx="5" fill="#0EA5E9" opacity="0.85">
+    <animate attributeName="opacity" values="0.35;0.9;0.35" dur="2.4s" begin="${delay}s" repeatCount="indefinite"/>
+  </rect>`;
+  }).join('');
+
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="980" height="170" viewBox="0 0 980 170" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="system pulse">
+  <defs>
+    <linearGradient id="pulseBg" x1="0" y1="0" x2="980" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617"/>
+      <stop offset="1" stop-color="#0B1120"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="1" y="1" width="978" height="168" rx="12" fill="url(#pulseBg)" stroke="#1E293B"/>
+
+  <text x="28" y="36" fill="#22D3EE" font-family="'Fira Code', Consolas, monospace" font-size="15" font-weight="700">system pulse</text>
+  <circle cx="146" cy="30" r="5" fill="#22C55E">
+    <animate attributeName="opacity" values="1;0.35;1" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="28" y="65" fill="#E2E8F0" font-family="'Fira Code', Consolas, monospace" font-size="12">repo: ${escapeXml(repoName)}</text>
+  <text x="28" y="86" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="12">language: ${escapeXml(String(repoLang))} | stars: ${repoStars}</text>
+  <text x="28" y="107" fill="#CBD5E1" font-family="'Fira Code', Consolas, monospace" font-size="12">event: ${escapeXml(contributionText)}</text>
+
+  <text x="600" y="40" fill="#67E8F9" font-family="'Fira Code', Consolas, monospace" font-size="12" font-weight="700">language activity</text>
+  ${barSvg}
+</svg>
+`;
+
+  fs.mkdirSync(path.dirname(SYSTEM_PULSE_SVG_PATH), { recursive: true });
+  fs.writeFileSync(SYSTEM_PULSE_SVG_PATH, svg);
+};
+
+const writeSpotlightCard = (c4psRepo) => {
+  const name = c4psRepo ? c4psRepo.full_name : `${GITHUB_USERNAME}/C4PS`;
+  const description = c4psRepo
+    ? truncate(c4psRepo.description || 'modular pipeline project', 110)
+    : 'core featured project for this profile';
+  const language = c4psRepo && c4psRepo.language ? c4psRepo.language : 'python';
+  const stars = c4psRepo && typeof c4psRepo.stargazers_count === 'number'
+    ? c4psRepo.stargazers_count
+    : 0;
+  const issues = c4psRepo && typeof c4psRepo.open_issues_count === 'number'
+    ? c4psRepo.open_issues_count
+    : 0;
+
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="980" height="140" viewBox="0 0 980 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="spotlight card">
+  <defs>
+    <linearGradient id="spotBg" x1="0" y1="0" x2="980" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#082F49"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="978" height="138" rx="12" fill="url(#spotBg)" stroke="#1E3A8A"/>
+  <text x="28" y="36" fill="#BAE6FD" font-family="'Fira Code', Consolas, monospace" font-size="15" font-weight="700">spotlight card :: c4ps</text>
+  <text x="28" y="62" fill="#E2E8F0" font-family="'Fira Code', Consolas, monospace" font-size="13">${escapeXml(name)}</text>
+  <text x="28" y="86" fill="#BFDBFE" font-family="'Fira Code', Consolas, monospace" font-size="12">${escapeXml(description)}</text>
+  <text x="28" y="112" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="12">lang: ${escapeXml(language.toLowerCase())} | stars: ${stars} | open issues: ${issues}</text>
+  <rect x="828" y="20" width="124" height="34" rx="8" fill="#0EA5E9" opacity="0.25"/>
+  <text x="844" y="42" fill="#E0F2FE" font-family="'Fira Code', Consolas, monospace" font-size="11">featured repo</text>
+</svg>
+`;
+
+  fs.mkdirSync(path.dirname(SPOTLIGHT_CARD_SVG_PATH), { recursive: true });
+  fs.writeFileSync(SPOTLIGHT_CARD_SVG_PATH, svg);
+};
+
 const main = async () => {
   const [repos, events, c4psRepo] = await Promise.all([
     requestJson(`/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=30&type=owner`),
@@ -313,8 +416,11 @@ const main = async () => {
 
   const latestContribBlock = [latestRepoLine, latestContributionLine, currentFocusLine].join('\n');
   const techStackBlock = buildTechStackBlock(repoList);
+  const topLanguages = getTopLanguages(repoList, 5);
 
   writeNowBuildingBanner(latestContributionLine, currentFocusLine);
+  writeSystemPulseBanner(latestRepo, latestContributionLine, topLanguages);
+  writeSpotlightCard(c4psRepo);
 
   const readmeData = fs.readFileSync(README_PATH, 'utf8');
   let nextReadme = readmeData;

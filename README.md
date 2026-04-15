@@ -1,9 +1,22 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,35:1e293b,70:0ea5e9,100:22d3ee&height=200&section=header&text=megh%20mavani&fontSize=46&fontColor=f8fafc&animation=fadeIn&fontAlignY=36&desc=ai%20systems%20builder%20%7C%20perceive%20adapt%20act&descAlignY=58&descSize=17" alt="megh mavani banner" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,35:0F172A,70:0369A1,100:22D3EE&height=220&section=header&text=megh%20mavani&fontSize=50&fontColor=F8FAFC&animation=twinkling&fontAlignY=36&desc=ai%20systems%20builder%20%7C%20perceive%20adapt%20act&descAlignY=58&descSize=18" alt="megh mavani banner" />
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&pause=1100&color=0EA5E9&center=true&vCenter=true&width=920&lines=hey%2C+i%27m+megh.;i+ship+ai+systems+that+actually+do+things.;modular+pipelines+%3E+messy+scripts." alt="typing intro" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&pause=1000&color=22D3EE&center=true&vCenter=true&width=980&lines=hey%2C+i%27m+megh.;i+build+ai+systems+that+actually+execute.;modular+pipelines+%3E+messy+scripts.;ship+fast+%2F+break+%2F+fix+%2F+improve." alt="typing intro" />
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=meghmavani&style=for-the-badge&color=0ea5e9" alt="profile views" />
+  <img src="https://img.shields.io/github/followers/meghmavani?style=for-the-badge&color=0284c7&label=followers" alt="followers" />
+  <img src="https://img.shields.io/github/stars/meghmavani/C4PS?style=for-the-badge&color=0369a1&label=c4ps%20stars" alt="c4ps stars" />
+</p>
+
+<p align="center">
+  <a href="#command-center"><img src="https://img.shields.io/badge/command_center-0f172a?style=for-the-badge&logo=powerbi&logoColor=white" alt="command center" /></a>
+  <a href="#live-feed"><img src="https://img.shields.io/badge/live_feed-1e293b?style=for-the-badge&logo=livewire&logoColor=white" alt="live feed" /></a>
+  <a href="#system-snapshots"><img src="https://img.shields.io/badge/system_snapshots-334155?style=for-the-badge&logo=codecrafters&logoColor=white" alt="system snapshots" /></a>
+  <a href="#github-telemetry"><img src="https://img.shields.io/badge/telemetry-0c4a6e?style=for-the-badge&logo=prometheus&logoColor=white" alt="telemetry" /></a>
 </p>
 
 <p align="center">
@@ -18,23 +31,35 @@
   <a href="https://github.com/meghmavani/meghmavani/actions/workflows/snake-workflow.yml"><img src="https://img.shields.io/github/actions/workflow/status/meghmavani/meghmavani/snake-workflow.yml?label=snake%20build&style=flat-square" alt="snake workflow status" /></a>
 </p>
 
-## about
+## command center
 
 computer science student building ai systems that go beyond static model outputs.
 
 i focus on systems that perceive, adapt, and act under real constraints.
 
-## what i build
+```txt
+real systems > toy notebooks
+modular pipelines > tangled scripts
+ship fast -> break -> fix -> improve
+systems thinking > isolated model scores
+```
 
-- agentic ai systems with action loops, not just text outputs
-- computer vision pipelines for video understanding
-- llm workflows with bug detection and auto-fix loops
-- modular multi-model systems with clean interfaces
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,opencv,js,ts,cpp,java,linux,docker,git&perline=11" alt="skill icons" />
+</p>
 
 ## live feed
 
 <p align="center">
   <img src="./assets/now-building.svg" alt="now building banner" />
+</p>
+
+<p align="center">
+  <img src="./assets/system-pulse.svg" alt="system pulse banner" />
+</p>
+
+<p align="center">
+  <img src="./assets/spotlight-card.svg" alt="spotlight card" />
 </p>
 
 <details open>
@@ -49,7 +74,7 @@ i focus on systems that perceive, adapt, and act under real constraints.
 </details>
 
 <details open>
-<summary><strong>repo spotlight</strong> (fixed)</summary>
+<summary><strong>repo spotlight (locked)</strong></summary>
 
 <!-- PROJECT-SPOTLIGHT:START -->
 - repo spotlight: [meghmavani/C4PS](https://github.com/meghmavani/C4PS)
@@ -58,6 +83,13 @@ i focus on systems that perceive, adapt, and act under real constraints.
 <!-- PROJECT-SPOTLIGHT:END -->
 
 </details>
+
+## what i build
+
+- agentic ai systems with action loops, not just text outputs
+- computer vision pipelines for video understanding
+- llm workflows with bug detection and auto-fix loops
+- modular multi-model systems with clean interfaces
 
 ## system snapshots
 
@@ -89,15 +121,6 @@ plutchik-based modeling with time-windowed memory and manipulation signal tracki
 
 </details>
 
-## philosophy
-
-```txt
-real systems > toy notebooks
-modular pipelines > tangled scripts
-ship fast -> break -> fix -> improve
-systems thinking > isolated model scores
-```
-
 ## tech surface
 
 <!-- TECH-STACK:START -->
@@ -113,6 +136,14 @@ systems thinking > isolated model scores
 <!-- TECH-STACK:END -->
 
 ## github telemetry
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=meghmavani&theme=algolia&no-frame=true&no-bg=true&row=1&column=7&margin-w=8" alt="trophies" />
+</p>
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=meghmavani&hide_border=true&background=00000000&ring=22D3EE&fire=0EA5E9&currStreakLabel=67E8F9" alt="streak stats" />
+</p>
 
 <p align="center">
   <img height="165" src="https://github-readme-stats.vercel.app/api?username=meghmavani&show_icons=true&hide_border=true&bg_color=00000000&title_color=0ea5e9&text_color=334155&icon_color=0284c7" alt="github stats" />
