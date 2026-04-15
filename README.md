@@ -60,6 +60,7 @@ systems thinking > isolated model scores
 <p align="center">
   <img src="./assets/spotlight-card.svg" alt="spotlight card" />
 </p>
+
 ## what i build
 
 - agentic ai systems with action loops, not just text outputs
