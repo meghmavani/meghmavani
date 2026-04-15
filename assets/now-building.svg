@@ -1,40 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="980" height="140" viewBox="0 0 980 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="now building status">
+<svg width="980" height="145" viewBox="0 0 980 145" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="now building status">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="980" y2="140" gradientUnits="userSpaceOnUse">
+    <linearGradient id="nbBg" x1="0" y1="0" x2="980" y2="145" gradientUnits="userSpaceOnUse">
       <stop stop-color="#020617"/>
-      <stop offset="0.55" stop-color="#0F172A"/>
-      <stop offset="1" stop-color="#082F49"/>
+      <stop offset="0.7" stop-color="#0B1120"/>
+      <stop offset="1" stop-color="#140a2b"/>
     </linearGradient>
-    <linearGradient id="line" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#22D3EE"/>
-      <stop offset="1" stop-color="#0EA5E9"/>
+    <linearGradient id="nbLine" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6D28D9"/>
+      <stop offset="1" stop-color="#4C1D95"/>
     </linearGradient>
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="2.2" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
 
-  <rect x="1" y="1" width="978" height="138" rx="12" fill="url(#bg)" stroke="#1E293B"/>
-  <rect x="18" y="18" width="944" height="3" rx="1.5" fill="url(#line)" filter="url(#glow)"/>
+  <rect x="1" y="1" width="978" height="143" rx="12" fill="url(#nbBg)" stroke="#312E81"/>
+  <rect x="18" y="18" width="944" height="3" rx="1.5" fill="url(#nbLine)"/>
 
-  <text x="30" y="46" fill="#67E8F9" font-family="'Fira Code', Consolas, monospace" font-size="17" font-weight="700">
-    >>> now building
+  <text x="30" y="47" fill="#C4B5FD" font-family="'Segoe UI', 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700">
+    now building
   </text>
 
-  <text x="30" y="74" fill="#E2E8F0" font-family="'Fira Code', Consolas, monospace" font-size="14">
+  <text x="30" y="77" fill="#EDE9FE" font-family="'Segoe UI', 'Trebuchet MS', Arial, sans-serif" font-size="16">
     pushed code to meghmavani/meghmavani (just now)
   </text>
 
-  <text x="30" y="100" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="13">
-    Do you find it tedious to delete specific files from a large directory? Are you ti...
+  <text x="30" y="104" fill="#DDD6FE" font-family="'Segoe UI', 'Trebuchet MS', Arial, sans-serif" font-size="14">
+    meghmavani/Folder Cleaner (updated 2h ago)
   </text>
 
-  <text x="30" y="123" fill="#64748B" font-family="'Fira Code', Consolas, monospace" font-size="11">
-    refreshed 2026-04-15 16:35 UTC
+  <text x="30" y="127" fill="#A78BFA" font-family="'Segoe UI', 'Trebuchet MS', Arial, sans-serif" font-size="12">
+    refreshed 2026-04-15 16:48 UTC
   </text>
 </svg>

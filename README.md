@@ -125,13 +125,13 @@ plutchik-based modeling with time-windowed memory and manipulation signal tracki
 
 <!-- TECH-STACK:START -->
 <p>
-  <img src="https://img.shields.io/badge/python-1f2937?style=flat-square" alt="python" />
-  <img src="https://img.shields.io/badge/html-155e75?style=flat-square" alt="html" />
-  <img src="https://img.shields.io/badge/javascript-374151?style=flat-square" alt="javascript" />
-  <img src="https://img.shields.io/badge/systems-334155?style=flat-square" alt="systems" />
-  <img src="https://img.shields.io/badge/jupyter_notebook-334155?style=flat-square" alt="jupyter notebook" />
-  <img src="https://img.shields.io/badge/css-0f172a?style=flat-square" alt="css" />
-  <img src="https://img.shields.io/badge/c%2B%2B-52525b?style=flat-square" alt="c++" />
+  <img src="https://img.shields.io/badge/python-0f172a?style=flat-square" alt="python" />
+  <img src="https://img.shields.io/badge/html-172554?style=flat-square" alt="html" />
+  <img src="https://img.shields.io/badge/javascript-312e81?style=flat-square" alt="javascript" />
+  <img src="https://img.shields.io/badge/systems-312e81?style=flat-square" alt="systems" />
+  <img src="https://img.shields.io/badge/jupyter_notebook-312e81?style=flat-square" alt="jupyter notebook" />
+  <img src="https://img.shields.io/badge/css-1e1b4b?style=flat-square" alt="css" />
+  <img src="https://img.shields.io/badge/c%2B%2B-111827?style=flat-square" alt="c++" />
 </p>
 <!-- TECH-STACK:END -->
 
