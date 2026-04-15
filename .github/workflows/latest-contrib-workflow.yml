@@ -1,0 +1,33 @@
+name: README automation workflow
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme-latest-contrib:
+    name: Update README dynamic sections
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Update README dynamic blocks
+        env:
+          GH_USERNAME: meghmavani
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node latest-contrib.js
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: ':memo: update README automation blocks'
+          file_pattern: README.md
