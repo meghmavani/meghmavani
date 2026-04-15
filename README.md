@@ -36,14 +36,14 @@ i'm most interested in systems that can perceive, adapt, and take action in the 
 
 <!-- LATEST-CONTRIB:START -->
 - latest repo: [meghmavani/Folder-Cleaner](https://github.com/meghmavani/Folder-Cleaner) (updated just now)
-- latest contribution: pushed code to meghmavani/Folder-Cleaner (just now)
+- latest contribution: created a branch in meghmavani/meghmavani (just now)
 - current focus hint: Do you find it tedious to delete specific files from a large directory? Are you tired of manually sifting t...
 <!-- LATEST-CONTRIB:END -->
 
 <!-- PROJECT-SPOTLIGHT:START -->
-- repo spotlight: [meghmavani/N0VA](https://github.com/meghmavani/N0VA)
-- why this one: An agentic system for real time traffic and pedestrian management using inference only computer vision.
-- signal: python project, 0 stars
+- repo spotlight: [meghmavani/Hermius](https://github.com/meghmavani/Hermius)
+- why this one: Hermius is a secure and anonymous chatroom service that allows users to communicate without revealing their...
+- signal: html project, 0 stars
 <!-- PROJECT-SPOTLIGHT:END -->
 
 <!-- BUILD-STATUS:START -->
@@ -74,11 +74,11 @@ systems thinking > isolated model scores
 <p>
   <img src="https://img.shields.io/badge/python-1f2937?style=flat-square" alt="python" />
   <img src="https://img.shields.io/badge/html-155e75?style=flat-square" alt="html" />
+  <img src="https://img.shields.io/badge/javascript-374151?style=flat-square" alt="javascript" />
   <img src="https://img.shields.io/badge/systems-334155?style=flat-square" alt="systems" />
   <img src="https://img.shields.io/badge/jupyter_notebook-334155?style=flat-square" alt="jupyter notebook" />
   <img src="https://img.shields.io/badge/css-0f172a?style=flat-square" alt="css" />
   <img src="https://img.shields.io/badge/c%2B%2B-52525b?style=flat-square" alt="c++" />
-  <img src="https://img.shields.io/badge/java-0c4a6e?style=flat-square" alt="java" />
 </p>
 <!-- TECH-STACK:END -->
 
