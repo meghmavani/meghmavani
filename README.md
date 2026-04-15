@@ -15,7 +15,6 @@
 <p align="center">
   <a href="#command-center"><img src="https://img.shields.io/badge/command_center-020617?style=for-the-badge&logo=powerbi&logoColor=white" alt="command center" /></a>
   <a href="#live-feed"><img src="https://img.shields.io/badge/live_feed-111827?style=for-the-badge&logo=livewire&logoColor=white" alt="live feed" /></a>
-  <a href="#system-snapshots"><img src="https://img.shields.io/badge/system_snapshots-1f1b3a?style=for-the-badge&logo=codecrafters&logoColor=white" alt="system snapshots" /></a>
   <a href="#github-telemetry"><img src="https://img.shields.io/badge/telemetry-312e81?style=for-the-badge&logo=prometheus&logoColor=white" alt="telemetry" /></a>
 </p>
 
@@ -35,7 +34,6 @@
 ## command center
 
 computer science student building ai systems that go beyond static model outputs.
-
 i focus on systems that perceive, adapt, and act under real constraints.
 
 ```txt
@@ -62,43 +60,12 @@ systems thinking > isolated model scores
 <p align="center">
   <img src="./assets/spotlight-card.svg" alt="spotlight card" />
 </p>
-
 ## what i build
 
 - agentic ai systems with action loops, not just text outputs
 - computer vision pipelines for video understanding
 - llm workflows with bug detection and auto-fix loops
 - modular multi-model systems with clean interfaces
-
-## system snapshots
-
-<details>
-<summary><strong>nova</strong></summary>
-
-multi-model vehicular analysis for traffic and pedestrian intelligence.
-
-</details>
-
-<details>
-<summary><strong>video understanding pipeline</strong></summary>
-
-r3d_18 + resnet50 + yolo in one modular perception stack.
-
-</details>
-
-<details>
-<summary><strong>codegen + autofix loop</strong></summary>
-
-generate code, detect bugs, patch, re-run, repeat.
-
-</details>
-
-<details>
-<summary><strong>emotional ai engine</strong></summary>
-
-plutchik-based modeling with time-windowed memory and manipulation signal tracking.
-
-</details>
 
 ## tech surface
 
@@ -132,7 +99,6 @@ plutchik-based modeling with time-windowed memory and manipulation signal tracki
 <p align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=meghmavani&bg_color=00000000&color=C4B5FD&line=7C3AED&point=A78BFA&area=true&hide_border=true" alt="activity graph" />
 </p>
-
 ## contribution snake
 
 <p align="center">
