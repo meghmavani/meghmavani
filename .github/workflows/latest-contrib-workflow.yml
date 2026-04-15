@@ -2,7 +2,7 @@ name: README automation workflow
 
 on:
   schedule:
-    - cron: '0 4 * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 permissions:

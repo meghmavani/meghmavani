@@ -20,16 +20,14 @@ if (!GITHUB_USERNAME) {
 }
 
 const TAGS = {
-  latestContrib: 'LATEST-CONTRIB',
-  spotlight: 'PROJECT-SPOTLIGHT',
   techStack: 'TECH-STACK',
 };
 
-const requestJson = (path) =>
+const requestJson = (requestPath) =>
   new Promise((resolve, reject) => {
     const options = {
       hostname: 'api.github.com',
-      path,
+      path: requestPath,
       method: 'GET',
       headers: {
         'User-Agent': 'readme-automation-bot',
@@ -144,28 +142,28 @@ const eventToLine = (event) => {
   const eventTime = event && event.created_at ? relativeTime(event.created_at) : 'recently';
 
   if (!event || !event.type) {
-    return '- latest contribution: no public contribution events yet';
+    return 'no public contribution events yet';
   }
 
   if (event.type === 'PushEvent') {
     const commits = event.payload && event.payload.commits ? event.payload.commits.length : 0;
     if (commits > 0) {
-      return `- latest contribution: pushed ${commits} commit(s) to ${repoName} (${eventTime})`;
+      return `pushed ${commits} commit(s) to ${repoName} (${eventTime})`;
     }
-    return `- latest contribution: pushed code to ${repoName} (${eventTime})`;
+    return `pushed code to ${repoName} (${eventTime})`;
   }
 
   if (event.type === 'PullRequestEvent') {
     const action = event.payload && event.payload.action ? event.payload.action : 'updated';
-    return `- latest contribution: ${action} a pull request in ${repoName} (${eventTime})`;
+    return `${action} a pull request in ${repoName} (${eventTime})`;
   }
 
   if (event.type === 'CreateEvent') {
     const refType = event.payload && event.payload.ref_type ? event.payload.ref_type : 'item';
-    return `- latest contribution: created a ${refType} in ${repoName} (${eventTime})`;
+    return `created a ${refType} in ${repoName} (${eventTime})`;
   }
 
-  return `- latest contribution: ${event.type} in ${repoName} (${eventTime})`;
+  return `${event.type} in ${repoName} (${eventTime})`;
 };
 
 const pickLatestRepo = (repos) => {
@@ -176,17 +174,17 @@ const pickLatestRepo = (repos) => {
 };
 
 const languageColor = {
-  Python: '1f2937',
-  JavaScript: '374151',
-  TypeScript: '4b5563',
-  Jupyter: '0f766e',
-  HTML: '155e75',
-  CSS: '0f172a',
-  C: '3f3f46',
-  'C++': '52525b',
-  Java: '0c4a6e',
-  Go: '075985',
-  Rust: '7c2d12',
+  Python: '0f172a',
+  JavaScript: '312e81',
+  TypeScript: '4c1d95',
+  Jupyter: '3b0764',
+  HTML: '172554',
+  CSS: '1e1b4b',
+  C: '334155',
+  'C++': '111827',
+  Java: '1e293b',
+  Go: '2e1065',
+  Rust: '111827',
 };
 
 const buildTechStackBlock = (repos) => {
@@ -202,12 +200,12 @@ const buildTechStackBlock = (repos) => {
     .map(([name]) => name);
 
   if (!top.length) {
-    return '<p>\n  <img src="https://img.shields.io/badge/systems_ai-0f766e?style=flat-square" alt="systems ai" />\n</p>';
+    return '<p>\n  <img src="https://img.shields.io/badge/systems_ai-312e81?style=flat-square" alt="systems ai" />\n</p>';
   }
 
   const badges = top
     .map((name) => {
-      const color = languageColor[name] || '334155';
+      const color = languageColor[name] || '312e81';
       const label = encodeURIComponent(String(name).toLowerCase().replace(/\s+/g, '_'));
       const alt = String(name).toLowerCase();
       return `  <img src="https://img.shields.io/badge/${label}-${color}?style=flat-square" alt="${alt}" />`;
@@ -229,56 +227,43 @@ const getTopLanguages = (repos, limit = 5) => {
     .slice(0, limit);
 };
 
-const writeNowBuildingBanner = (latestContributionLine, currentFocusLine) => {
-  const contributionText = truncate(
-    stripMarkdown(latestContributionLine).replace(/^latest contribution:\s*/i, ''),
-    85,
-  );
-  const focusText = truncate(
-    stripMarkdown(currentFocusLine).replace(/^current focus hint:\s*/i, ''),
-    85,
-  );
+const writeNowBuildingBanner = (latestContributionText, latestRepoLine) => {
+  const contributionText = truncate(latestContributionText, 88);
+  const repoText = truncate(latestRepoLine, 88);
 
   const now = new Date();
   const stamp = now.toISOString().slice(0, 16).replace('T', ' ');
 
   const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg width="980" height="140" viewBox="0 0 980 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="now building status">
+<svg width="980" height="145" viewBox="0 0 980 145" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="now building status">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="980" y2="140" gradientUnits="userSpaceOnUse">
+    <linearGradient id="nbBg" x1="0" y1="0" x2="980" y2="145" gradientUnits="userSpaceOnUse">
       <stop stop-color="#020617"/>
-      <stop offset="0.55" stop-color="#0F172A"/>
-      <stop offset="1" stop-color="#082F49"/>
+      <stop offset="0.7" stop-color="#0B1120"/>
+      <stop offset="1" stop-color="#140a2b"/>
     </linearGradient>
-    <linearGradient id="line" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#22D3EE"/>
-      <stop offset="1" stop-color="#0EA5E9"/>
+    <linearGradient id="nbLine" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6D28D9"/>
+      <stop offset="1" stop-color="#4C1D95"/>
     </linearGradient>
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="2.2" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
 
-  <rect x="1" y="1" width="978" height="138" rx="12" fill="url(#bg)" stroke="#1E293B"/>
-  <rect x="18" y="18" width="944" height="3" rx="1.5" fill="url(#line)" filter="url(#glow)"/>
+  <rect x="1" y="1" width="978" height="143" rx="12" fill="url(#nbBg)" stroke="#312E81"/>
+  <rect x="18" y="18" width="944" height="3" rx="1.5" fill="url(#nbLine)"/>
 
-  <text x="30" y="46" fill="#67E8F9" font-family="'Fira Code', Consolas, monospace" font-size="17" font-weight="700">
-    >>> now building
+  <text x="30" y="47" fill="#C4B5FD" font-family="'Segoe UI', 'Trebuchet MS', Arial, sans-serif" font-size="21" font-weight="700">
+    now building
   </text>
 
-  <text x="30" y="74" fill="#E2E8F0" font-family="'Fira Code', Consolas, monospace" font-size="14">
+  <text x="30" y="77" fill="#EDE9FE" font-family="'Segoe UI', 'Trebuchet MS', Arial, sans-serif" font-size="16">
     ${escapeXml(contributionText)}
   </text>
 
-  <text x="30" y="100" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="13">
-    ${escapeXml(focusText)}
+  <text x="30" y="104" fill="#DDD6FE" font-family="'Segoe UI', 'Trebuchet MS', Arial, sans-serif" font-size="14">
+    ${escapeXml(repoText)}
   </text>
 
-  <text x="30" y="123" fill="#64748B" font-family="'Fira Code', Consolas, monospace" font-size="11">
+  <text x="30" y="127" fill="#A78BFA" font-family="'Segoe UI', 'Trebuchet MS', Arial, sans-serif" font-size="12">
     refreshed ${escapeXml(stamp)} UTC
   </text>
 </svg>
@@ -288,27 +273,24 @@ const writeNowBuildingBanner = (latestContributionLine, currentFocusLine) => {
   fs.writeFileSync(NOW_BUILDING_SVG_PATH, svg);
 };
 
-const writeSystemPulseBanner = (latestRepo, latestContributionLine, topLanguages) => {
+const writeSystemPulseBanner = (latestRepo, latestContributionText, topLanguages) => {
   const repoName = latestRepo ? latestRepo.full_name : `${GITHUB_USERNAME}/unknown`;
   const repoLang = latestRepo && latestRepo.language ? latestRepo.language : 'systems';
   const repoStars = latestRepo && typeof latestRepo.stargazers_count === 'number'
     ? latestRepo.stargazers_count
     : 0;
-  const contributionText = truncate(
-    stripMarkdown(latestContributionLine).replace(/^latest contribution:\s*/i, ''),
-    70,
-  );
+  const contributionText = truncate(latestContributionText, 72);
 
   const bars = topLanguages.length ? topLanguages : [['systems', 1]];
   const maxCount = Math.max(...bars.map((entry) => entry[1]), 1);
 
   const barSvg = bars.map(([language, count], index) => {
-    const y = 62 + index * 18;
+    const y = 64 + index * 18;
     const width = Math.max(90, Math.round((count / maxCount) * 330));
     const delay = (index * 0.2).toFixed(1);
     return `
-  <text x="600" y="${y + 10}" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="11">${escapeXml(String(language))}</text>
-  <rect x="700" y="${y}" width="${width}" height="10" rx="5" fill="#0EA5E9" opacity="0.85">
+  <text x="600" y="${y + 10}" fill="#C4B5FD" font-family="'Segoe UI', Arial, sans-serif" font-size="12">${escapeXml(String(language))}</text>
+  <rect x="700" y="${y}" width="${width}" height="10" rx="5" fill="#7C3AED" opacity="0.85">
     <animate attributeName="opacity" values="0.35;0.9;0.35" dur="2.4s" begin="${delay}s" repeatCount="indefinite"/>
   </rect>`;
   }).join('');
@@ -318,22 +300,22 @@ const writeSystemPulseBanner = (latestRepo, latestContributionLine, topLanguages
   <defs>
     <linearGradient id="pulseBg" x1="0" y1="0" x2="980" y2="170" gradientUnits="userSpaceOnUse">
       <stop stop-color="#020617"/>
-      <stop offset="1" stop-color="#0B1120"/>
+      <stop offset="1" stop-color="#120824"/>
     </linearGradient>
   </defs>
 
-  <rect x="1" y="1" width="978" height="168" rx="12" fill="url(#pulseBg)" stroke="#1E293B"/>
+  <rect x="1" y="1" width="978" height="168" rx="12" fill="url(#pulseBg)" stroke="#312E81"/>
 
-  <text x="28" y="36" fill="#22D3EE" font-family="'Fira Code', Consolas, monospace" font-size="15" font-weight="700">system pulse</text>
-  <circle cx="146" cy="30" r="5" fill="#22C55E">
+  <text x="28" y="38" fill="#C4B5FD" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700">system pulse</text>
+  <circle cx="152" cy="33" r="5" fill="#A78BFA">
     <animate attributeName="opacity" values="1;0.35;1" dur="1.5s" repeatCount="indefinite"/>
   </circle>
 
-  <text x="28" y="65" fill="#E2E8F0" font-family="'Fira Code', Consolas, monospace" font-size="12">repo: ${escapeXml(repoName)}</text>
-  <text x="28" y="86" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="12">language: ${escapeXml(String(repoLang))} | stars: ${repoStars}</text>
-  <text x="28" y="107" fill="#CBD5E1" font-family="'Fira Code', Consolas, monospace" font-size="12">event: ${escapeXml(contributionText)}</text>
+  <text x="28" y="68" fill="#F5F3FF" font-family="'Segoe UI', Arial, sans-serif" font-size="14">repo: ${escapeXml(repoName)}</text>
+  <text x="28" y="91" fill="#DDD6FE" font-family="'Segoe UI', Arial, sans-serif" font-size="14">language: ${escapeXml(String(repoLang))} | stars: ${repoStars}</text>
+  <text x="28" y="114" fill="#C4B5FD" font-family="'Segoe UI', Arial, sans-serif" font-size="14">event: ${escapeXml(contributionText)}</text>
 
-  <text x="600" y="40" fill="#67E8F9" font-family="'Fira Code', Consolas, monospace" font-size="12" font-weight="700">language activity</text>
+  <text x="600" y="40" fill="#E9D5FF" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700">language activity</text>
   ${barSvg}
 </svg>
 `;
@@ -345,7 +327,7 @@ const writeSystemPulseBanner = (latestRepo, latestContributionLine, topLanguages
 const writeSpotlightCard = (c4psRepo) => {
   const name = c4psRepo ? c4psRepo.full_name : `${GITHUB_USERNAME}/C4PS`;
   const description = c4psRepo
-    ? truncate(c4psRepo.description || 'modular pipeline project', 110)
+    ? truncate(c4psRepo.description || 'modular pipeline project', 105)
     : 'core featured project for this profile';
   const language = c4psRepo && c4psRepo.language ? c4psRepo.language : 'python';
   const stars = c4psRepo && typeof c4psRepo.stargazers_count === 'number'
@@ -356,20 +338,20 @@ const writeSpotlightCard = (c4psRepo) => {
     : 0;
 
   const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg width="980" height="140" viewBox="0 0 980 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="spotlight card">
+<svg width="980" height="145" viewBox="0 0 980 145" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="spotlight card">
   <defs>
-    <linearGradient id="spotBg" x1="0" y1="0" x2="980" y2="140" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#082F49"/>
-      <stop offset="1" stop-color="#0F172A"/>
+    <linearGradient id="spotBg" x1="0" y1="0" x2="980" y2="145" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#140a2b"/>
+      <stop offset="1" stop-color="#020617"/>
     </linearGradient>
   </defs>
-  <rect x="1" y="1" width="978" height="138" rx="12" fill="url(#spotBg)" stroke="#1E3A8A"/>
-  <text x="28" y="36" fill="#BAE6FD" font-family="'Fira Code', Consolas, monospace" font-size="15" font-weight="700">spotlight card :: c4ps</text>
-  <text x="28" y="62" fill="#E2E8F0" font-family="'Fira Code', Consolas, monospace" font-size="13">${escapeXml(name)}</text>
-  <text x="28" y="86" fill="#BFDBFE" font-family="'Fira Code', Consolas, monospace" font-size="12">${escapeXml(description)}</text>
-  <text x="28" y="112" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="12">lang: ${escapeXml(language.toLowerCase())} | stars: ${stars} | open issues: ${issues}</text>
-  <rect x="828" y="20" width="124" height="34" rx="8" fill="#0EA5E9" opacity="0.25"/>
-  <text x="844" y="42" fill="#E0F2FE" font-family="'Fira Code', Consolas, monospace" font-size="11">featured repo</text>
+  <rect x="1" y="1" width="978" height="143" rx="12" fill="url(#spotBg)" stroke="#4C1D95"/>
+  <text x="28" y="40" fill="#E9D5FF" font-family="'Segoe UI', Arial, sans-serif" font-size="19" font-weight="700">spotlight :: c4ps</text>
+  <text x="28" y="68" fill="#F5F3FF" font-family="'Segoe UI', Arial, sans-serif" font-size="16">${escapeXml(name)}</text>
+  <text x="28" y="95" fill="#DDD6FE" font-family="'Segoe UI', Arial, sans-serif" font-size="14">${escapeXml(description)}</text>
+  <text x="28" y="122" fill="#C4B5FD" font-family="'Segoe UI', Arial, sans-serif" font-size="13">lang: ${escapeXml(language.toLowerCase())} | stars: ${stars} | open issues: ${issues}</text>
+  <rect x="810" y="22" width="140" height="38" rx="10" fill="#7C3AED" opacity="0.25"/>
+  <text x="828" y="46" fill="#EDE9FE" font-family="'Segoe UI', Arial, sans-serif" font-size="12">featured repo</text>
 </svg>
 `;
 
@@ -390,49 +372,26 @@ const main = async () => {
   const latestRepo = pickLatestRepo(repoList);
   const latestEvent = eventList.length ? eventList[0] : null;
 
-  const latestRepoLine = latestRepo
-    ? `- latest repo: [${latestRepo.full_name}](${latestRepo.html_url})${
-        latestRepo.updated_at ? ` (updated ${relativeTime(latestRepo.updated_at)})` : ''
-      }`
-    : '- latest repo: no public repo data found yet';
+  const latestRepoText = latestRepo
+    ? `${latestRepo.full_name}${latestRepo.updated_at ? ` (updated ${relativeTime(latestRepo.updated_at)})` : ''}`
+    : 'no public repo data found yet';
 
-  const latestContributionLine = eventToLine(latestEvent);
-
-  const currentFocusLine = latestRepo && latestRepo.description
-    ? `- current focus hint: ${truncate(latestRepo.description, 110)}`
-    : '- current focus hint: building modular ai systems that perceive, adapt, and act';
-
-  const spotlightBlock = c4psRepo
-    ? [
-        `- repo spotlight: [${c4psRepo.full_name}](${c4psRepo.html_url})`,
-        `- why this one: ${truncate(c4psRepo.description || 'core featured project in this profile', 110)}`,
-        `- signal: ${(c4psRepo.language || 'multi-language').toLowerCase()} project, ${c4psRepo.stargazers_count} stars`,
-      ].join('\n')
-    : [
-        `- repo spotlight: [${GITHUB_USERNAME}/c4ps](https://github.com/${GITHUB_USERNAME}/c4ps)`,
-        '- why this one: selected as the primary spotlight project',
-        '- signal: pinned spotlight target',
-      ].join('\n');
-
-  const latestContribBlock = [latestRepoLine, latestContributionLine, currentFocusLine].join('\n');
+  const latestContributionText = eventToLine(latestEvent);
   const techStackBlock = buildTechStackBlock(repoList);
   const topLanguages = getTopLanguages(repoList, 5);
 
-  writeNowBuildingBanner(latestContributionLine, currentFocusLine);
-  writeSystemPulseBanner(latestRepo, latestContributionLine, topLanguages);
+  writeNowBuildingBanner(latestContributionText, latestRepoText);
+  writeSystemPulseBanner(latestRepo, latestContributionText, topLanguages);
   writeSpotlightCard(c4psRepo);
 
   const readmeData = fs.readFileSync(README_PATH, 'utf8');
-  let nextReadme = readmeData;
-  nextReadme = replaceBlock(nextReadme, TAGS.latestContrib, latestContribBlock);
-  nextReadme = replaceBlock(nextReadme, TAGS.spotlight, spotlightBlock);
-  nextReadme = replaceBlock(nextReadme, TAGS.techStack, techStackBlock);
+  const nextReadme = replaceBlock(readmeData, TAGS.techStack, techStackBlock);
 
   if (nextReadme !== readmeData) {
     fs.writeFileSync(README_PATH, nextReadme);
-    console.log('README updated with latest contribution, c4ps spotlight, and tech stack blocks.');
+    console.log('README updated with tech stack; live feed SVGs refreshed.');
   } else {
-    console.log('README already up to date (banner refreshed).');
+    console.log('README already up to date (live feed SVGs refreshed).');
   }
 };
 
