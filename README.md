@@ -33,6 +33,10 @@ i focus on systems that perceive, adapt, and act under real constraints.
 
 ## live feed
 
+<p align="center">
+  <img src="./assets/now-building.svg" alt="now building banner" />
+</p>
+
 <details open>
 <summary><strong>activity pulse</strong></summary>
 

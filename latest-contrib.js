@@ -1,7 +1,9 @@
 const fs = require('fs');
 const https = require('https');
+const path = require('path');
 
 const README_PATH = './README.md';
+const NOW_BUILDING_SVG_PATH = './assets/now-building.svg';
 
 const usernameFromRepo = process.env.GITHUB_REPOSITORY
   ? process.env.GITHUB_REPOSITORY.split('/')[0]
@@ -99,6 +101,14 @@ const stripMarkdown = (value) =>
     .replace(/[>#*_~-]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+
+const escapeXml = (value) =>
+  String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 
 const truncate = (value, maxLength) => {
   const normalized = stripMarkdown(value);
@@ -205,6 +215,65 @@ const buildTechStackBlock = (repos) => {
   return `<p>\n${badges}\n</p>`;
 };
 
+const writeNowBuildingBanner = (latestContributionLine, currentFocusLine) => {
+  const contributionText = truncate(
+    stripMarkdown(latestContributionLine).replace(/^latest contribution:\s*/i, ''),
+    85,
+  );
+  const focusText = truncate(
+    stripMarkdown(currentFocusLine).replace(/^current focus hint:\s*/i, ''),
+    85,
+  );
+
+  const now = new Date();
+  const stamp = now.toISOString().slice(0, 16).replace('T', ' ');
+
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="980" height="140" viewBox="0 0 980 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="now building status">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="980" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617"/>
+      <stop offset="0.55" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#082F49"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="1" y="1" width="978" height="138" rx="12" fill="url(#bg)" stroke="#1E293B"/>
+  <rect x="18" y="18" width="944" height="3" rx="1.5" fill="url(#line)" filter="url(#glow)"/>
+
+  <text x="30" y="46" fill="#67E8F9" font-family="'Fira Code', Consolas, monospace" font-size="17" font-weight="700">
+    >>> now building
+  </text>
+
+  <text x="30" y="74" fill="#E2E8F0" font-family="'Fira Code', Consolas, monospace" font-size="14">
+    ${escapeXml(contributionText)}
+  </text>
+
+  <text x="30" y="100" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="13">
+    ${escapeXml(focusText)}
+  </text>
+
+  <text x="30" y="123" fill="#64748B" font-family="'Fira Code', Consolas, monospace" font-size="11">
+    refreshed ${escapeXml(stamp)} UTC
+  </text>
+</svg>
+`;
+
+  fs.mkdirSync(path.dirname(NOW_BUILDING_SVG_PATH), { recursive: true });
+  fs.writeFileSync(NOW_BUILDING_SVG_PATH, svg);
+};
+
 const main = async () => {
   const [repos, events, c4psRepo] = await Promise.all([
     requestJson(`/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=30&type=owner`),
@@ -245,6 +314,8 @@ const main = async () => {
   const latestContribBlock = [latestRepoLine, latestContributionLine, currentFocusLine].join('\n');
   const techStackBlock = buildTechStackBlock(repoList);
 
+  writeNowBuildingBanner(latestContributionLine, currentFocusLine);
+
   const readmeData = fs.readFileSync(README_PATH, 'utf8');
   let nextReadme = readmeData;
   nextReadme = replaceBlock(nextReadme, TAGS.latestContrib, latestContribBlock);
@@ -255,7 +326,7 @@ const main = async () => {
     fs.writeFileSync(README_PATH, nextReadme);
     console.log('README updated with latest contribution, c4ps spotlight, and tech stack blocks.');
   } else {
-    console.log('README already up to date.');
+    console.log('README already up to date (banner refreshed).');
   }
 };
 

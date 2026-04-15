@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="980" height="140" viewBox="0 0 980 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="now building status">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="980" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617"/>
+      <stop offset="0.55" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#082F49"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="1" y="1" width="978" height="138" rx="12" fill="url(#bg)" stroke="#1E293B"/>
+  <rect x="18" y="18" width="944" height="3" rx="1.5" fill="url(#line)" filter="url(#glow)"/>
+
+  <text x="30" y="46" fill="#67E8F9" font-family="'Fira Code', Consolas, monospace" font-size="17" font-weight="700">
+    >>> now building
+  </text>
+
+  <text x="30" y="74" fill="#E2E8F0" font-family="'Fira Code', Consolas, monospace" font-size="14">
+    pushed code to meghmavani/meghmavani (just now)
+  </text>
+
+  <text x="30" y="100" fill="#93C5FD" font-family="'Fira Code', Consolas, monospace" font-size="13">
+    Do you find it tedious to delete specific files from a large directory? Are you ti...
+  </text>
+
+  <text x="30" y="123" fill="#64748B" font-family="'Fira Code', Consolas, monospace" font-size="11">
+    refreshed 2026-04-15 16:30 UTC
+  </text>
+</svg>
