@@ -6,6 +6,7 @@
   <a href="https://github.com/meghmavani"><img src="https://img.shields.io/badge/building-ai%20systems-0f172a?style=for-the-badge&logo=github&logoColor=white" alt="building ai systems" /></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-first-0369a1?style=for-the-badge&logo=python&logoColor=white" alt="python first" /></a>
   <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/vision-model%20pipelines-0891b2?style=for-the-badge&logo=pytorch&logoColor=white" alt="vision model pipelines" /></a>
+  <a href="https://github.com/meghmavani?tab=repositories"><img src="https://img.shields.io/badge/modular_architecture-155e75?style=for-the-badge&logo=git&logoColor=white" alt="modular architecture" /></a>
 </p>
 
 <p align="center">
@@ -13,26 +14,76 @@
   <a href="https://github.com/meghmavani/meghmavani/actions/workflows/snake-workflow.yml"><img src="https://img.shields.io/github/actions/workflow/status/meghmavani/meghmavani/snake-workflow.yml?label=snake%20build&style=flat-square" alt="snake workflow status" /></a>
 </p>
 
-## hey, i'm megh!
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&pause=1200&color=0EA5E9&center=true&vCenter=true&width=900&lines=hey%2C+i%27m+megh.;i+build+ai+systems+that+perceive%2C+adapt%2C+and+act.;real+pipelines%2C+real+constraints%2C+real+iteration." alt="typing intro" />
+</p>
+
+## hello there
 
 i'm a computer science student who likes building ai that can do more than generate text.
 i'm most interested in systems that can perceive, adapt, and take action in the real world.
 
-## about me
+<table>
+  <tr>
+    <td valign="top" width="50%">
+
+### about me
 
 - i build fast, then iterate faster
 - i prefer modular architecture over giant scripts
 - i care about behavior under real constraints, not just clean demos
 - slightly chaotic build process, intentional final systems
 
-## what i do
+    </td>
+    <td valign="top" width="50%">
 
-- agentic ai systems that can make decisions and execute actions
-- computer vision pipelines, especially for video understanding
-- llm + tool orchestration and code generation workflows
-- multi-model systems where each model has a job and the pipeline has a brain
+### what i do
 
-## currently building
+- agentic ai systems that execute actions
+- computer vision pipelines for video reasoning
+- llm + tool orchestration with feedback loops
+- multi-model systems where each model has a clear role
+
+    </td>
+  </tr>
+</table>
+
+## system snapshots
+
+<table>
+  <tr>
+    <td valign="top" width="50%">
+
+### nova
+
+multi-model vehicular analysis system for traffic observation and interpretation.
+
+### video understanding pipeline
+
+r3d_18 + resnet50 + yolo wired into one modular perception stack.
+
+    </td>
+    <td valign="top" width="50%">
+
+### codegen + autofix loop
+
+generate code, detect bugs, patch, re-run, repeat.
+
+### emotional ai engine
+
+plutchik-based modeling with time-windowed emotional memory and manipulation signals.
+
+    </td>
+  </tr>
+</table>
+
+## live buildboard
+
+<table>
+  <tr>
+    <td valign="top" width="50%">
+
+### activity pulse
 
 <!-- LATEST-CONTRIB:START -->
 - latest repo: [meghmavani/Folder-Cleaner](https://github.com/meghmavani/Folder-Cleaner) (updated 1h ago)
@@ -40,11 +91,18 @@ i'm most interested in systems that can perceive, adapt, and take action in the 
 - current focus hint: Do you find it tedious to delete specific files from a large directory? Are you tired of manually sifting t...
 <!-- LATEST-CONTRIB:END -->
 
+### repo spotlight
+
 <!-- PROJECT-SPOTLIGHT:START -->
 - repo spotlight: [meghmavani/Hermius](https://github.com/meghmavani/Hermius)
 - why this one: Hermius is a secure and anonymous chatroom service that allows users to communicate without revealing their...
 - signal: html project, 0 stars
 <!-- PROJECT-SPOTLIGHT:END -->
+
+    </td>
+    <td valign="top" width="50%">
+
+### build mode
 
 <!-- BUILD-STATUS:START -->
 - current experiment: iterating on autonomous ai system behaviors
@@ -52,12 +110,16 @@ i'm most interested in systems that can perceive, adapt, and take action in the 
 - mode: building fast, testing in loops, shipping clean modules
 <!-- BUILD-STATUS:END -->
 
-## latest release / demo
+### release pulse
 
 <!-- LATEST-RELEASE:START -->
 - latest release: no public releases yet
 - demo note: first release card appears automatically once you publish one
 <!-- LATEST-RELEASE:END -->
+
+    </td>
+  </tr>
+</table>
 
 ## philosophy
 
@@ -68,7 +130,7 @@ ship fast -> break -> fix -> improve
 systems thinking > isolated model scores
 ```
 
-## tech interests
+## tech surface
 
 <!-- TECH-STACK:START -->
 <p>
@@ -82,7 +144,7 @@ systems thinking > isolated model scores
 </p>
 <!-- TECH-STACK:END -->
 
-## links
+## find me
 
 <p align="center">
   <a href="https://github.com/meghmavani"><img src="https://img.icons8.com/color/72/000000/github--v1.png" alt="github" /></a>
@@ -95,7 +157,7 @@ systems thinking > isolated model scores
   if you're into ai systems that actually do things, let's connect.
 </p>
 
-## github stats
+## github telemetry
 
 <p align="center">
   <img height="165" src="https://github-readme-stats.vercel.app/api?username=meghmavani&show_icons=true&hide_border=true&bg_color=00000000&title_color=0ea5e9&text_color=334155&icon_color=0284c7" alt="github stats" />
