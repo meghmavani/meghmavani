@@ -100,6 +100,7 @@ systems thinking > isolated model scores
 <p align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=meghmavani&bg_color=00000000&color=C4B5FD&line=7C3AED&point=A78BFA&area=true&hide_border=true" alt="activity graph" />
 </p>
+
 ## contribution snake
 
 <p align="center">
