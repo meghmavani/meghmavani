@@ -20,17 +20,17 @@
 <table>
   <tr>
     <td>
-      <img src="https://github-readme-stats.vercel.app/api?username=meghmavani&show_icons=true&theme=transparent&hide_border=true&title_color=a78bfa&icon_color=a78bfa&text_color=e8ecf1&bg_color=0b0f14&ring_color=a78bfa&include_all_commits=true&count_private=true" alt="GitHub Stats" />
+      <img src="https://github-readme-stats.vercel.app/api?username=meghmavani&show_icons=true&hide_border=true&title_color=a78bfa&icon_color=a78bfa&text_color=e8ecf1&bg_color=0b0f14&include_all_commits=true" alt="GitHub Stats" />
     </td>
     <td>
-      <img src="https://streak-stats.demolab.com?user=meghmavani&theme=transparent&hide_border=true&ring=a78bfa&fire=a78bfa&currStreakLabel=e8ecf1&sideLabels=7c8b9b&dates=7c8b9b&background=0b0f14" alt="GitHub Streak" />
+      <img src="https://streak-stats.demolab.com?user=meghmavani&hide_border=true&ring=a78bfa&fire=a78bfa&currStreakLabel=e8ecf1&sideLabels=7c8b9b&dates=7c8b9b&background=0b0f14" alt="GitHub Streak" />
     </td>
   </tr>
 </table>
 </div>
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=meghmavani&layout=compact&theme=transparent&hide_border=true&title_color=a78bfa&text_color=e8ecf1&bg_color=0b0f14&langs_count=8&hide=jupyter%20notebook,html" alt="Top Languages" width="860" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=meghmavani&layout=compact&hide_border=true&title_color=a78bfa&text_color=e8ecf1&bg_color=0b0f14&langs_count=8&hide=jupyter%20notebook,html" alt="Top Languages" width="860" />
 </div>
 
 <br/>
